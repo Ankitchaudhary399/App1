@@ -4,7 +4,7 @@ import { View ,StyleSheet, TouchableOpacity,Text} from 'react-native'
 const Button = (props) => {
     return (
         <View style={styles.Container}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={props.onPress}>
             <View style={styles.Box}>
                     <Text style={styles.txt}>
                     {props.name}
@@ -20,7 +20,7 @@ export default Button;
 const styles = StyleSheet.create({
     Container:{
         flex:1,
-        backgroundColor:'yellow',
+        
         justifyContent:'center'
     },
     Box:{
@@ -29,10 +29,11 @@ const styles = StyleSheet.create({
         width:"80%",
         borderRadius:8,
         alignSelf:'center',
-        backgroundColor:'red'
+        backgroundColor:'black'
     },
     txt:{
-        textAlign:'center'
+        textAlign:'center',
+        color:'white'
     }
 })
 

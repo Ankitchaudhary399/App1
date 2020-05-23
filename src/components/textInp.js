@@ -6,7 +6,10 @@ const Txtinput = (props) => {
         <View style={styles.Main}>
            <View style={styles.Box1}>
            <TextInput
-           style={styles.txtinp}>{props.name}</TextInput>
+           style={styles.txtinp}
+           value={props.name}
+           onChangeText={input=>props.textChange(input)}
+           ></TextInput>
            </View>
         </View>
     )
@@ -16,7 +19,7 @@ export default Txtinput;
 const styles = StyleSheet.create({
     Main:{
         flex:1,
-        backgroundColor:'orange',
+        
         justifyContent:'center',   
     },
     Box1:{

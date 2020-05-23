@@ -23,7 +23,7 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import Home from './src/home';
+import Home from './src/screens/home';
 import Button from './src/components/Button'
 import Txtinput from './src/components/textInp';
 const App: () => React$Node = () => {
