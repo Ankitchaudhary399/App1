@@ -31,17 +31,7 @@ export default class Home extends Component {
     /* add function to add items at the start*/
     _addItem=(text)=>{
 
-        // let nonEmpty = text.trim().length > 0;
-        // if(nonEmpty)
-        // {
-        //     this.setState(prevState = {
-        //         let {arrholder} = prevState;
-        //         return{
-        //             arrholder:arrholder.concat(text),
-        //             text:""
-        //         };
-        //     })
-        // }
+        
         let nonempty = this.state.txt.trim().length > 0;
         let arrholder = this.arr;
         if(nonempty){
@@ -64,8 +54,7 @@ export default class Home extends Component {
            })
         
 
-        // this.arr.pop()
-        // this.setState({ arrholder: [...this.arr] })
+       
     }
     _showItem = () => {
 
@@ -101,11 +90,7 @@ removeTodo (item) {
 
     this.setState({arrholder});
 
-    // this.setState(prevState=>{
-    //      arrholder = prevState.arrholder.slice();
-    //     arrholder.splice(i,1);
-    //     return {arrholder}
-    // })
+
 
 
 }
