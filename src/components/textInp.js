@@ -1,6 +1,8 @@
 import React from 'react'
 import { View ,StyleSheet, TextInput,} from 'react-native'
 
+/* a functional component of textinput */
+
 const Txtinput = (props) => {
     return (
         <View style={styles.Main}>
@@ -33,7 +35,7 @@ const styles = StyleSheet.create({
         fontSize:18,
         paddingLeft:5,
         color:'black',
-        paddingTop:5
+        paddingTop:10
 
     }
     

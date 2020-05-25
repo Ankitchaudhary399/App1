@@ -1,6 +1,8 @@
 import React from 'react'
 import { View ,StyleSheet, TouchableOpacity,Text} from 'react-native'
 
+/*Button functional component */
+
 const Button = (props) => {
     return (
         <View style={styles.Container}>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Text,View,StyleSheet,TouchableOpacity,FlatList,Image} from 'react-native';
+import {Text,View,StyleSheet,TouchableOpacity,FlatList} from 'react-native';
 import Button from '../components/Button'
 import Txtinput from '../components/textInp';
 import TodoItem from '../components/todoItem';
@@ -28,39 +28,88 @@ export default class Home extends Component {
             <View style={{width:"100%",height:5}}/>       
         )
     }
-    _addItem=()=>{
-       this.arr.unshift({title:this.state.txt,done:false})
+    /* add function to add items at the start*/
+    _addItem=(text)=>{
+
+        // let nonEmpty = text.trim().length > 0;
+        // if(nonEmpty)
+        // {
+        //     this.setState(prevState = {
+        //         let {arrholder} = prevState;
+        //         return{
+        //             arrholder:arrholder.concat(text),
+        //             text:""
+        //         };
+        //     })
+        // }
+        let nonempty = this.state.txt.trim().length > 0;
+        let arrholder = this.arr;
+        if(nonempty){
+       this.arr.unshift({
+           id:arrholder.length+1,
+           title:this.state.txt,
+           done:false})
        this.setState({ arrholder: [...this.arr] })
-       console.log(this.arr)
+       console.log(this.state.arrholder.length)
     }
-    _delItem = (item) => {
-        let arrholder = this.state.arrholder;
-        arrholder = arrholder.filter((todo)=>todo.id !== item.id);
-        this.setState({arrholder})
+}
+
+    /* delete function delete item from end */
+
+
+    _delItem = (id) => {
+
+        this.setState({
+            arrholder: this.state.arrholder.filter(item => item.id !== id)
+           })
+        
+
         // this.arr.pop()
         // this.setState({ arrholder: [...this.arr] })
     }
     _showItem = () => {
+
     }
+
+    /* handle the textInput and set state */
+
     handletxt = (item) => { 
+        
         this.setState({txt:item})
+        
+        
         console.log("item==>",this.state.txt);
     }
-    toggle = () => {
-        this.setState({select:!this.state.select})
-        console.log("select",this.state.select)
-    }
+    /* toggle function to highlight a item*/
     toggleDone(item){
         let arrholder = this.state.arrholder;
         arrholder = arrholder.map((todo)=>{
             if(todo.id == item.id)
             {
                 todo.done = !todo.done;
+
             }
             return todo;
         })
         this.setState({arrholder})
     }
+removeTodo (item) {
+
+    let arrholder = this.state.arrholder;
+
+    arrholder = arrholder.filter((todo) => todo.id !== item.id);
+
+    this.setState({arrholder});
+
+    // this.setState(prevState=>{
+    //      arrholder = prevState.arrholder.slice();
+    //     arrholder.splice(i,1);
+    //     return {arrholder}
+    // })
+
+
+}
+
     render() {
         return (
             <View style={styles.main}>
@@ -73,8 +122,8 @@ export default class Home extends Component {
                 </View>
                 <View style={styles.box2}>
                   <Button name="Add" onPress={this._addItem}/>
-                  <Button name="Delete" onPress={this._delItem}/>
-                  <Button name="Select all"/>
+                  <Button name="Delete" onPress={this.removeitem}/>
+                  
                 </View>
                 <FlatList 
                 style={{flex:1,backgroundColor:'lightgrey',}}
@@ -83,7 +132,9 @@ export default class Home extends Component {
                 extraData={this.state}
                 keyExtractor={(item,index) => index.toString()}
                 renderItem={({item,index})=>{
-                    return(<TodoItem todoItem={item} toggleDone={()=>this.toggleDone(item)}/>)}}
+                    return(<TodoItem todoItem={item} toggleDone={()=>this.toggleDone(item)}
+                    removeTodo={()=>this.removeTodo(item)}
+                    />)}}
                 ItemSeparatorComponent={this.flatlistsep}
                 />    
             </View>
