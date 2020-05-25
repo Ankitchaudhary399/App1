@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Text,View,StyleSheet,FlatList} from 'react-native';
+import {View,StyleSheet,FlatList} from 'react-native';
 import Button from '../components/Button'
 import Txtinput from '../components/textInp';
 import TodoItem from '../components/todoItem';
@@ -8,12 +8,7 @@ export default class Home extends Component {
     constructor(props){
         super(props);
 
-        this.arr=[{
-            id:1,title:'something',done:false
-            }
-            ,{
-            id:2,title:'task2',done:false
-            }],
+        this.arr=[],
 
         this.state={
             arrholder:[],
@@ -47,13 +42,6 @@ export default class Home extends Component {
     }
 }
 
-    /* delete function delete item from end */
-
-    _delItem = (id) => {
-        this.setState({
-            arrholder: this.state.arrholder.filter(item => item.id !== id)
-           })
-    }
 
     /* handle the textInput and set state */
 
@@ -102,6 +90,7 @@ _clearall = () => {
                 <View style={styles.box2}>
                   <Button name="Add" onPress={this._addItem}/>
                   <Button name="clear All" onPress={this._clearall}/>
+
                 </View>
                 <FlatList 
                 style={{flex:1,backgroundColor:'lightgrey',}}
