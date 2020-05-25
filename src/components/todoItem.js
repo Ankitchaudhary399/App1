@@ -7,13 +7,6 @@ import { Text ,StyleSheet,Button,TouchableOpacity,Image} from 'react-native'
 export default class TodoItem extends Component {
     constructor(props){
         super(props);
-        this.state={
-            check:false,
-        }
-
-    }
-    selected = ()=>{
-        this.setState({check:!this.state.check})
     }
     render() {
         const todoItem = this.props.todoItem;
@@ -21,6 +14,7 @@ export default class TodoItem extends Component {
             <TouchableOpacity style={styles.container}
             onPress={()=>this.props.toggleDone()}
             >
+            <Image source={ (todoItem.done)? require('../assests/checked.png') : require('../assests/uncheck.png')}/>
                 <Text style={(todoItem.done)?{color:'grey'}:{color:'black'}}>{todoItem.title}</Text>
                 <TouchableOpacity onPress={()=>this.props.removeTodo()}/>
                <Button title="remove" 
@@ -35,9 +29,9 @@ const styles = StyleSheet.create({
     container:{
         height:40,
         backgroundColor:'ghostwhite',
-        borderRadius:10,
+        borderBottomWidth:1,
         borderWidth:2,
-        paddingLeft:15,
+        paddingLeft:1,
         flexDirection:'row',
         alignItems:'center',
         flexDirection:'row',

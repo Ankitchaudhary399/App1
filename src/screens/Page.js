@@ -1,27 +1,20 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import {Text,View,StyleSheet,FlatList} from 'react-native';
 import Button from '../components/Button'
 import Txtinput from '../components/textInp';
 import TodoItem from '../components/todoItem';
 
-export default class Home extends Component {
-    constructor(props){
-        super(props);
-
-        this.arr=[{
-            id:1,title:'something',done:false
-            }
-            ,{
-            id:2,title:'task2',done:false
-            }],
-
-        this.state={
-            arrholder:[],
-            txt:'',
-            select:false
+export default function Page {
+    
+    const [arrholder,arrSet] = useState([]);
+    const [arr,setArr] = useState([{
+        id:1,title:'something',done:false
         }
-
-    }
+        ,{
+        id:2,title:'task2',done:false
+        }],)
+    const [txt,setTxt] = useState('');
+    const [select,setSelect] = useState(false);
 
     /* itemSeprator function that seprate the flatlist */
 
@@ -35,15 +28,14 @@ export default class Home extends Component {
 
     _addItem=(text)=>{
 
-        let nonempty = this.state.txt.trim().length > 0;
+        let nonempty = txt.trim().length > 0;
         let arrholder = this.arr;
         if(nonempty){
        this.arr.unshift({
            id:arrholder.length+1,
            title:this.state.txt,
            done:false})
-       this.setState({ arrholder: [...this.arr],
-    txt:'' })
+       this.setState({ arrholder: [...this.arr] })
     }
 }
 
@@ -85,23 +77,17 @@ removeTodo (item) {
     this.setState({arrholder});
 }
 
-    /* clear all list */
-_clearall = () => {
     
-    this.setState({arrholder:""});
-}
-    render() {
         return (
             <View style={styles.main}>
                 <View style={styles.box}>
                     <Txtinput 
                     value={"Add task..."}
-                    textChange={this.handletxt}
+                    textChange={(item)=>setTxt(item)}
                     />
                 </View>
                 <View style={styles.box2}>
-                  <Button name="Add" onPress={this._addItem}/>
-                  <Button name="clear All" onPress={this._clearall}/>
+                  <Button name="Add" onPress={_addItem}/>
                 </View>
                 <FlatList 
                 style={{flex:1,backgroundColor:'lightgrey',}}
@@ -118,7 +104,7 @@ _clearall = () => {
             </View>
         )
     }
-}
+
 const styles = StyleSheet.create({
 
     main:{

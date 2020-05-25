@@ -9,7 +9,6 @@ const Txtinput = (props) => {
            <View style={styles.Box1}>
            <TextInput
            style={styles.txtinp}
-           value={props.name}
            onChangeText={input=>props.textChange(input)}
            ></TextInput>
            </View>
