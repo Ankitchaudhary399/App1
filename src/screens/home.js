@@ -75,9 +75,9 @@ removeTodo (item) {
 
     /* clear all list */
 _clearall = () => {
-    
     this.setState({arrholder:""});
 }
+/* */
     render() {
         return (
             <View style={styles.main}>
